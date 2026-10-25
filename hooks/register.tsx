@@ -26,7 +26,7 @@ const elapsed = (ms: number) => {
 export const register: Register = on => {
   on('session.start', async ($, e, next) => {
     await $.command.register({
-      name: 'agents',
+      name: 'agents-window',
       description: 'Открыть окно с активными агентами',
     })
     void $.ui.open({ id: PANE, title: 'Агенты' })
@@ -61,7 +61,7 @@ export const register: Register = on => {
     return next(e)
   })
 
-  on('command.run', { command: 'agents' }, async $ => {
+  on('command.run', { command: 'agents-window' }, async $ => {
     await $.ui.open({ id: PANE, title: 'Агенты' })
     return { text: 'Окно агентов открыто.' }
   })
